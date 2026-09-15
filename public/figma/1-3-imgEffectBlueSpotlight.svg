@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="1300" height="980" viewBox="0 0 1300 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+<ellipse id="Effect / blue spotlight" cx="650" cy="490" rx="650" ry="490" fill="url(#paint0_radial_0_4)"/>
+<defs>
+<radialGradient id="paint0_radial_0_4" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(650 490) scale(650 490)">
+<stop stop-color="#084DFF" stop-opacity="0.6"/>
+<stop offset="0.58" stop-color="#0533CC" stop-opacity="0.15"/>
+<stop offset="1" stop-opacity="0"/>
+</radialGradient>
+</defs>
+</svg>
