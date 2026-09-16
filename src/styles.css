@@ -352,7 +352,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .perception-grid { grid-template-columns: 1fr; }
   .perception-card { min-height: 0; }
   .perception-card__before { min-height: 0; }
-  .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* Keep the approved side-by-side cards on phones as well as tablets. */
+  .reaction-grid, .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 600px) {
@@ -386,7 +387,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .solution__title span { font-size: 24px; margin-top: 14px; }
   .solution__caption { font-size: 17px; line-height: 28px; }
   .reactions .section-title { line-height: 1.48; }
-  .reaction-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .reaction-grid { gap: 10px; }
   .reaction-card { min-height: 0; padding: 16px 12px; gap: 10px; border-radius: 14px; }
   .reaction-card__number { right: 12px; top: 16px; font-size: 11px; }
   .reaction-card h3 { font-size: clamp(14px, 3.8vw, 17px); line-height: 1.4; }

@@ -144,5 +144,22 @@ test('all sections fit narrow and wide screens without horizontal scrolling', as
     const overflow = await page.locator('.pricing-card, .reaction-card, .process-step, .consult-link, .value-card').evaluateAll(elements =>
       elements.filter(el => el.scrollWidth > el.clientWidth + 1).map(el => el.className));
     expect(overflow).toEqual([]);
+    // Approved compact layout: reactions stay 2x2 and prices stay side by side,
+    // including on phones. Check rendered positions, not just CSS declarations.
+    for (const selector of ['.reaction-card', '.pricing-card']) {
+      const cards = await page.locator(selector).evaluateAll(elements =>
+        elements.map(el => {
+          const { x, y, width, height } = el.getBoundingClientRect();
+          return { x, y, width, height };
+        }));
+      expect(cards.length).toBe(selector === '.reaction-card' ? 4 : 2);
+      expect(Math.abs(cards[0].y - cards[1].y)).toBeLessThan(1);
+      expect(cards[1].x).toBeGreaterThanOrEqual(cards[0].x + cards[0].width);
+      if (cards.length === 4) {
+        expect(cards[2].y).toBeGreaterThanOrEqual(cards[0].y + cards[0].height);
+        expect(Math.abs(cards[2].y - cards[3].y)).toBeLessThan(1);
+        expect(Math.abs(cards[0].x - cards[2].x)).toBeLessThan(1);
+      }
+    }
   }
 });
