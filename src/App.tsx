@@ -7,10 +7,10 @@ import { Glow, Section } from './components/Section';
 import { figmaAsset, heroImages, media, patentImages } from './data';
 
 const reactions = [
-  { icon: 'Bulb', title: <>“특허출원 기술이라고?”</>, body: <>제품의 차별화 요소를<br />실제 특허출원 내용으로 구체화했다는 점을<br />보여줄 수 있습니다.</> },
-  { icon: 'PatentDocument', title: <>“제품 하나에 이런 특허까지<br />출원했다고?”</>, body: <>제품의 성분, 배합, 작용원리 등을<br />기술적인 관점에서 보여줄 수 있습니다.</> },
-  { icon: 'Search', title: <>제품의 특징을</>, body: <>특허 관점에서 구조화하여<br />설명할 수 있습니다.</> },
-  { icon: 'Cart', title: <>“단순히 과대광고만 하는<br />제품은 아닌 것 같은데”</>, body: <>단순한 광고 문구를 넘어,<br />제품의 구매 이유를 기술적인 관점에서<br />보여줄 수 있습니다.</> },
+  { icon: 'Bulb', title: <>“특허출원 기술이라고?”</>, body: <>제품의 차별화 요소를<br />{' '}실제 특허출원 내용으로 구체화했다는 점을<br />{' '}보여줄 수 있습니다.</> },
+  { icon: 'PatentDocument', title: <>“제품 하나에 이런 특허까지<br />{' '}출원했다고?”</>, body: <>제품의 성분, 배합, 작용원리 등을<br />{' '}기술적인 관점에서 보여줄 수 있습니다.</> },
+  { icon: 'Search', title: <>제품의 특징을</>, body: <>특허 관점에서 구조화하여<br />{' '}설명할 수 있습니다.</> },
+  { icon: 'Cart', title: <>“단순히 과대광고만 하는<br />{' '}제품은 아닌 것 같은데”</>, body: <>단순한 광고 문구를 넘어,<br />{' '}제품의 구매 이유를 기술적인 관점에서<br />{' '}보여줄 수 있습니다.</> },
 ];
 
 export default function App() {
@@ -36,7 +36,7 @@ export default function App() {
         <p className="solution__intro"><span className="copy-line"><strong className="text-blue">광고 영상과 상세페이지</strong>에서</span><span className="copy-line">“이 제품은 뭔가 다른가?”라는 호기심을 만들고</span><span className="copy-line">제품에 대한 기대감을 주는 <strong className="text-blue keep-together">새로운 소구 소재.</strong></span></p>
         <h2 className="solution__title"><strong className="text-blue text-shimmer">브랜드 특허출원 기술</strong><span>이라는 프레임입니다.</span></h2>
         <Carousel variant="patent" slides={patentImages} label="특허 활용 사례" interval={2400} initial={2} />
-        <p className="solution__caption">대표님 제품도 위 예시처럼<br /><em className="text-accent text-blue keep-together">“특허출원 독자기술”</em> <span className="keep-together">프레임을 입힐 수 있습니다.</span></p>
+        <p className="solution__caption">대표님 제품도 위 예시처럼<br /><em className="text-accent text-blue keep-together">“특허출원 기술제품”</em>으로 <span className="keep-together">포지셔닝할 수 있습니다.</span></p>
       </Section>
 
       <Section id="reactions" className="reactions" nodeId="1:27" glow="1-27-imgGlowReferenceBlue">
@@ -53,10 +53,10 @@ export default function App() {
         <p className="eyebrow">특허출원이 만드는 가장 큰 차이</p>
         <h2 className="section-title">같은 제품이라도,<br />소비자가 받아들이는 인식이 달라집니다.</h2>
         <div className="perception-grid">
-          <article className="perception-card"><p className="perception-card__label">제품 인식</p><p className="perception-card__before">“성분을 조합해 만든 일반적인 제품”이 아니라</p><h3><span className="copy-line">“효능과 작용원리까지</span><span className="copy-line">연구해 설계한</span><span className="copy-line"><em className="text-blue keep-together">기술제품</em>”</span></h3><p className="perception-card__note">으로 인식되도록 만듭니다.</p></article>
-          <article className="perception-card"><p className="perception-card__label">브랜드 인식</p><p className="perception-card__before">단순히 제품을 광고/판매하는 브랜드가 아니라</p><h3><span className="copy-line">“해당 분야의 효능을</span><span className="copy-line">집중적으로 연구하는</span><span className="copy-line"><em className="text-blue keep-together">전문 브랜드</em>”</span></h3><p className="perception-card__note">로 인식되도록 만듭니다.</p></article>
+          <article className="perception-card"><header className="perception-card__heading"><p className="perception-card__label">제품 포지션</p><p className="perception-card__subtitle">소비자의 제품 인식</p></header><p className="perception-card__before">“성분을 조합해 만든 일반적인 제품”이 아니라</p><h3>“효능과 작용원리까지 연구해 설계한 <em className="text-blue keep-together">기술제품</em>”</h3><p className="perception-card__note">으로 인식되도록 만듭니다.</p></article>
+          <article className="perception-card"><header className="perception-card__heading"><p className="perception-card__label">브랜드 포지션</p><p className="perception-card__subtitle">소비자의 브랜드 인식</p></header><p className="perception-card__before">단순히 제품을 광고/판매하는 브랜드가 아니라</p><h3>“해당 분야의 효능을 집중적으로 연구하는 <em className="text-blue keep-together">전문 브랜드</em>”</h3><p className="perception-card__note">로 인식되도록 만듭니다.</p></article>
         </div>
-        <p className="perception__conclusion"><span className="copy-line">그리고 그 인식의 차이는</span><span className="copy-line"><span className="keep-together"><em>“제품에 대한 호기심”</em>과</span> <span className="keep-together"><em>“효능에 대한 기대감”</em>을 높여,</span></span><span className="copy-line"><span className="keep-together">첫 구매 전환을 만들고</span> <span className="keep-together"><em>기존 타제품 사용자의 전환</em>까지</span> 유도합니다.</span></p>
+        <p className="perception__conclusion"><span className="copy-line">그리고 그 인식의 차이는</span><span className="copy-line perception__keyline"><span className="keep-together"><em>“제품에 대한 호기심”</em>과</span> <span className="keep-together"><em>“효능에 대한 기대감”</em>을 높여,</span></span><span className="copy-line"><span className="keep-together">첫 구매 전환을 만들고</span> <span className="keep-together"><em>기존 타제품 사용자의 전환</em>까지</span> 유도합니다.</span></p>
       </Section>
 
       <Section id="consult" theme="dark" className="consult" nodeId="1:64" glow="1-64-imgGlowConsultFocus">
