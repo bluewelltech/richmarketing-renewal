@@ -1,4 +1,4 @@
-export const CONSULT_URL = 'https://tally.so/r/ZjZ98a';
+export const CONSULT_URL = 'https://tally.so/r/7Ryg2R';
 const imagekit = 'https://ik.imagekit.io/suelle/rich/';
 const cafe24 = 'https://ecimg.cafe24img.com/pg2535b99666738022/bluewelltech/';
 
@@ -20,8 +20,8 @@ export const media = {
 export const figmaAsset = (name: string) => `${import.meta.env.BASE_URL}figma/${name}.svg`;
 
 export const packages = [
-  { count: 1, label: '단품', title: '특허 소재 1건', price: 40, total: 40 },
-  { count: 4, label: '브랜드사 추천', title: 'IP 마케팅 패키지', price: 20, total: 80 },
+  { count: 1, label: '단품', title: '특허 소재 1건', price: 45, total: 45 },
+  { count: 4, label: '브랜드사 추천', title: 'IP 마케팅 패키지', price: 25, total: 100 },
 ];
 export const patentExamples = [
   '진피 탄력 밀도 증진 및 주름 깊이 감소를 위한 PDRN, 콜라겐 복합 화장료 조성물',

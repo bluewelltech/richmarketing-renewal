@@ -11,7 +11,7 @@ test('complete landing, working local font and consultation destinations', async
   const links = page.getByRole('link', { name: '특허 마케팅 신청하기', exact: false });
   await expect(links).toHaveCount(3);
   for (const link of await links.all()) {
-    await expect(link).toHaveAttribute('href', 'https://tally.so/r/ZjZ98a');
+    await expect(link).toHaveAttribute('href', 'https://tally.so/r/7Ryg2R');
     await expect(link).toHaveAttribute('target', '_blank');
     await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   }
@@ -23,10 +23,10 @@ test('package selection highlights just the chosen package and supports keyboard
   await page.goto('/');
   const group = page.getByRole('group', { name: 'IP 마케팅 패키지 선택' });
   await expect(group.getByRole('button')).toHaveCount(2);
-  const single = group.getByRole('button', { name: '1건 40만원', exact: true });
+  const single = group.getByRole('button', { name: '1건 45만원', exact: true });
   await single.click();
   await expect(single).toHaveAttribute('aria-pressed', 'true');
-  const bundle = group.getByRole('button', { name: '4건 20만원씩, 총 80만원' });
+  const bundle = group.getByRole('button', { name: '4건 25만원씩, 총 100만원' });
   await bundle.focus(); await page.keyboard.press('Enter');
   await expect(bundle).toHaveAttribute('aria-pressed', 'true');
   await expect(single).toHaveAttribute('aria-pressed', 'false');
@@ -51,7 +51,7 @@ test('carousels loop across both ends with keyboard navigation', async ({ page }
   }
 });
 
-test('drag advances a card and a pause control stops autoplay', async ({ page }) => {
+test('drag advances a card and keyboard focus stops autoplay', async ({ page }) => {
   await page.goto('/');
   const carousel = page.getByRole('region', { name: '광고 소재 예시' });
   const viewport = carousel.locator('.carousel__viewport');
@@ -63,8 +63,7 @@ test('drag advances a card and a pause control stops autoplay', async ({ page })
   await page.mouse.up();
   await expect(viewport).toHaveAttribute('aria-label', /현재 3\/3/);
   await viewport.focus();
-  await carousel.getByRole('button', { name: '광고 소재 예시 자동재생 일시정지' }).click();
-  await expect(carousel.getByRole('button', { name: '광고 소재 예시 자동재생 시작' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.carousel__controls')).toHaveCount(0);
   await page.clock.install();
   await page.clock.fastForward(10000);
   await expect(viewport).toHaveAttribute('aria-label', /현재 3\/3/);
@@ -73,7 +72,7 @@ test('drag advances a card and a pause control stops autoplay', async ({ page })
 test('autoplay advances at the specified interval', async ({ page }) => {
   await page.clock.install();
   for (const [name, interval, initial, next, following] of [
-    ['광고 소재 예시', 2000, '2/3', '3/3', '1/3'],
+    ['광고 소재 예시', 1600, '2/3', '3/3', '1/3'],
     ['특허 활용 사례', 2400, '3/5', '4/5', '5/5'],
   ] as const) {
     await page.goto('/');

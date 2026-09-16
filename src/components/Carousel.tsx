@@ -10,7 +10,6 @@ export function Carousel({ slides, variant, label, interval, initial }: Props) {
   const [position, setPosition] = useState(initial);
   const [drag, setDrag] = useState(0);
   const [width, setWidth] = useState(1120);
-  const [paused, setPaused] = useState(false);
   const [focused, setFocused] = useState(false);
   const [visible, setVisible] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
@@ -39,7 +38,7 @@ export function Carousel({ slides, variant, label, interval, initial }: Props) {
   }, []);
 
   useEffect(() => {
-    if (paused || focused || reducedMotion || !visible) return;
+    if (focused || reducedMotion || !visible) return;
     let timer: ReturnType<typeof setTimeout>;
     const schedule = (delay: number) => { timer = setTimeout(tick, delay); };
     const tick = () => {
@@ -50,7 +49,7 @@ export function Carousel({ slides, variant, label, interval, initial }: Props) {
     };
     schedule(Math.max(0, blockedUntil.current - Date.now()) || interval);
     return () => clearTimeout(timer);
-  }, [interval, paused, focused, reducedMotion, visible, timerVersion]);
+  }, [interval, focused, reducedMotion, visible, timerVersion]);
 
   function onPointerDown(event: PointerEvent<HTMLDivElement>) {
     if (event.button !== 0 || (event.target as HTMLElement).closest('button')) return;
@@ -113,11 +112,6 @@ export function Carousel({ slides, variant, label, interval, initial }: Props) {
           {item.label && <figcaption>{item.label}</figcaption>}
         </figure>;
       })}
-    </div>
-    <div className="carousel__controls">
-      <button type="button" onClick={() => advance(-1)} aria-label={`${label} 이전`} aria-controls={id}>←</button>
-      <button type="button" onClick={() => setPaused(p => !p)} aria-label={`${label} ${paused ? '자동재생 시작' : '자동재생 일시정지'}`} aria-pressed={paused} disabled={reducedMotion}>{paused ? '재생' : '일시정지'}</button>
-      <button type="button" onClick={() => advance(1)} aria-label={`${label} 다음`} aria-controls={id}>→</button>
     </div>
   </div>;
 }
