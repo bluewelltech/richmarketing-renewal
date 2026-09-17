@@ -8,6 +8,9 @@ test('complete landing, working local font and consultation destinations', async
   await expect(page.locator('main > section')).toHaveCount(14);
   await page.evaluate(() => document.fonts.ready);
   expect(await page.evaluate(() => document.fonts.check('600 16px Pretendard'))).toBe(true);
+  expect(await page.locator('body *').evaluateAll(elements => elements
+    .filter(el => el.textContent?.trim() && !getComputedStyle(el).fontFamily.startsWith('Pretendard'))
+    .map(el => el.tagName))).toEqual([]);
   const links = page.getByRole('link', { name: '특허 마케팅 신청하기', exact: false });
   await expect(links).toHaveCount(3);
   for (const link of await links.all()) {
@@ -144,6 +147,10 @@ test('all sections fit narrow and wide screens without horizontal scrolling', as
     const overflow = await page.locator('.pricing-card, .reaction-card, .process-step, .consult-link, .value-card').evaluateAll(elements =>
       elements.filter(el => el.scrollWidth > el.clientWidth + 1).map(el => el.className));
     expect(overflow).toEqual([]);
+    const examples = await page.locator('.example-card').evaluateAll(elements =>
+      elements.map(el => ({ x: el.getBoundingClientRect().x, y: el.getBoundingClientRect().y })));
+    expect(Math.abs(examples[0].y - examples[1].y)).toBeLessThan(1);
+    expect(examples[1].x).toBeGreaterThan(examples[0].x);
     // Approved compact layout: reactions stay 2x2 and prices stay side by side,
     // including on phones. Check rendered positions, not just CSS declarations.
     for (const selector of ['.reaction-card', '.pricing-card']) {
@@ -162,4 +169,41 @@ test('all sections fit narrow and wide screens without horizontal scrolling', as
       }
     }
   }
+});
+
+test('consultation steps light in sequence and remain lit after scrolling away', async ({ page }) => {
+  await page.goto('/');
+  const steps = page.locator('.consult-steps');
+  await steps.scrollIntoViewIfNeeded();
+  await expect(steps).toHaveAttribute('data-active', 'true');
+  const items = steps.locator('li');
+  await expect(items.nth(0)).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+  await expect(items.nth(2)).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+  await page.locator('#intro').scrollIntoViewIfNeeded();
+  await steps.scrollIntoViewIfNeeded();
+  for (const item of await items.all()) {
+    await expect(item).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+    await expect(item).toHaveCSS('color', 'rgb(21, 27, 40)');
+  }
+});
+
+test('book preview advances from certificate to patent examples and respects reduced motion', async ({ page }) => {
+  await page.clock.install();
+  await page.goto('/');
+  const book = page.locator('.book-showcase');
+  await book.scrollIntoViewIfNeeded();
+  await expect(book).toHaveAttribute('aria-label', /현재 1\/6/);
+  await page.clock.runFor(4400);
+  await expect(book).toHaveAttribute('aria-label', /현재 2\/6/);
+  await expect(book.locator('.book-showcase__turning')).toHaveCount(1);
+  await book.focus();
+  await page.clock.runFor(5000);
+  await expect(book).toHaveAttribute('aria-label', /현재 2\/6/);
+  await page.keyboard.press('ArrowLeft');
+  await expect(book).toHaveAttribute('aria-label', /현재 1\/6/);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await book.blur();
+  await page.clock.runFor(10000);
+  await expect(book).toHaveAttribute('aria-label', /현재 1\/6/);
+  await expect(book.locator('.book-showcase__turning')).toHaveCount(0);
 });

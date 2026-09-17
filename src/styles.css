@@ -3,7 +3,7 @@
   src: url('/fonts/PretendardVariable.woff2') format('woff2');
   font-style: normal;
   font-weight: 100 900;
-  font-display: swap;
+  font-display: block;
 }
 
 :root {
@@ -28,6 +28,7 @@
 }
 
 * { box-sizing: border-box; }
+*, *::before, *::after { font-family: var(--font-family); }
 html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 body { margin: 0; min-width: 320px; font-family: var(--font-family); }
 h1, h2, h3, p, ul, ol, figure, blockquote { margin: 0; }

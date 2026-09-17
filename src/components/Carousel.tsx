@@ -18,7 +18,7 @@ export function Carousel({ slides, variant, label, interval, initial }: Props) {
   const pointer = useRef<{ id: number; x: number; dx: number } | null>(null);
   const blockedUntil = useRef(0);
   const id = useId();
-  const scale = Math.min(1, Math.max(width / 1120, variant === 'hero' ? 0.76 : 0.85));
+  const scale = variant === 'patent' ? 1 : Math.min(1, Math.max(width / 1120, 0.76));
   const pitch = (variant === 'hero' ? 387.5 : 229) * scale;
   const advance = useCallback((direction: number) => {
     blockedUntil.current = Date.now() + 3000;
@@ -86,7 +86,7 @@ export function Carousel({ slides, variant, label, interval, initial }: Props) {
     } else {
       x = abs <= 1 ? abs * 229 : abs <= 2 ? 229 + (abs - 1) * 187 : 416 + (abs - 2) * 176;
       w = abs <= 1 ? blend(248, 186, abs) : blend(186, 164, Math.min(abs - 1, 1));
-      h = abs <= 1 ? blend(320, 258, abs) : blend(258, 228, Math.min(abs - 1, 1));
+      h = abs <= 1 ? blend(380, 306, abs) : blend(306, 272, Math.min(abs - 1, 1));
       opacity = abs <= 1 ? blend(1, 0.86, abs) : blend(0.86, 0.68, Math.min(abs - 1, 1));
     }
     return { width: w * scale, height: h * scale, opacity, zIndex: 10 - Math.round(abs),

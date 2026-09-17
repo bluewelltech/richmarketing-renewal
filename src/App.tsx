@@ -1,3 +1,5 @@
+import { BookShowcase } from './components/BookShowcase';
+import { ConsultSteps } from './components/ConsultSteps';
 import { Carousel } from './components/Carousel';
 import { ConsultLink } from './components/ConsultLink';
 import { Pricing } from './components/Pricing';
@@ -9,7 +11,7 @@ import { figmaAsset, heroImages, media, patentImages } from './data';
 const reactions = [
   { icon: 'Bulb', title: <>“특허출원 기술이라고?”</>, body: <>제품의 차별화 요소를<br />{' '}실제 특허출원 내용으로 구체화했다는 점을<br />{' '}보여줄 수 있습니다.</> },
   { icon: 'PatentDocument', title: <>“제품 하나에 이런 특허까지<br />{' '}출원했다고?”</>, body: <>제품의 성분, 배합, 작용원리 등을<br />{' '}기술적인 관점에서 보여줄 수 있습니다.</> },
-  { icon: 'Search', title: <>제품의 특징을</>, body: <>특허 관점에서 구조화하여<br />{' '}설명할 수 있습니다.</> },
+  { icon: 'Search', title: <>“제품의 특징을”</>, body: <>특허 관점에서 구조화하여<br />{' '}설명할 수 있습니다.</> },
   { icon: 'Cart', title: <>“단순히 과대광고만 하는<br />{' '}제품은 아닌 것 같은데”</>, body: <>단순한 광고 문구를 넘어,<br />{' '}제품의 구매 이유를 기술적인 관점에서<br />{' '}보여줄 수 있습니다.</> },
 ];
 
@@ -23,7 +25,7 @@ export default function App() {
           <ConsultLink compact />
         </header>
         <p className="hero__kicker">요즘 대부분 브랜드들을 보면</p>
-        <h1>임상 데이터<br />비포·애프터<br />인플루언서</h1>
+        <h1 className="text-shimmer text-shimmer--diagonal">임상 데이터<br />비포·애프터<br />인플루언서</h1>
         <p className="hero__sub">이제는 모두 비슷하게 하고 있습니다.</p>
         <Carousel variant="hero" slides={heroImages} label="광고 소재 예시" interval={1600} initial={1} />
         <div className="hero__message">
@@ -33,14 +35,14 @@ export default function App() {
       </Section>
 
       <Section id="patent" theme="dark" className="solution" nodeId="1:17" glow="1-17-imgEffectSolutionAura">
-        <p className="solution__intro"><span className="copy-line"><strong className="text-blue">광고 영상과 상세페이지</strong>에서</span><span className="copy-line">“이 제품은 뭔가 다른가?”라는 호기심을 만들고</span><span className="copy-line">제품에 대한 기대감을 주는 <strong className="text-blue keep-together">새로운 소구 소재.</strong></span></p>
+        <p className="solution__intro"><span className="copy-line"><strong className="text-blue">광고 영상과 상세페이지</strong>에서</span><span className="copy-line">“이 제품은 뭔가 다른가?”라는 호기심을 만들고</span><span className="copy-line">제품에 대한 기대감을 주는<br /><strong className="text-blue keep-together">새로운 소구 소재.</strong></span></p>
         <h2 className="solution__title"><strong className="text-blue text-shimmer">브랜드 특허출원 기술</strong><span>이라는 프레임입니다.</span></h2>
         <Carousel variant="patent" slides={patentImages} label="특허 활용 사례" interval={2400} initial={2} />
-        <p className="solution__caption">대표님 제품도 위 예시처럼<br /><em className="text-accent text-blue keep-together">“특허출원 기술제품”</em>으로 <span className="keep-together">포지셔닝할 수 있습니다.</span></p>
+        <p className="solution__caption">대표님 제품도 위 예시처럼<br /><em className="text-accent text-blue keep-together">“특허출원 기술제품”</em>으로<br /><span className="keep-together">포지셔닝할 수 있습니다.</span></p>
       </Section>
 
       <Section id="reactions" className="reactions" nodeId="1:27" glow="1-27-imgGlowReferenceBlue">
-        <h2 className="section-title">소비자는 이렇게 <em>반응합니다.</em></h2>
+        <h2 className="section-title"><span className="consumer-dots"><span>소</span><span>비</span><span>자</span></span>는 이렇게 <em>반응합니다.</em></h2>
         <div className="reaction-grid">{reactions.map((reaction, i) => <article className="reaction-card" key={reaction.icon}>
           <img src={figmaAsset(`1-27-imgHtmlVector${reaction.icon}`)} alt="" className="reaction-card__icon" width="44" height="44" />
           <span className="reaction-card__number">0{i + 1}</span>
@@ -51,18 +53,18 @@ export default function App() {
 
       <Section id="perception" theme="soft" className="perception" nodeId="1:49" glow="1-49-imgGlowReferenceBlue">
         <p className="eyebrow">특허출원이 만드는 가장 큰 차이</p>
-        <h2 className="section-title">같은 제품이라도,<br />소비자가 받아들이는 인식이 달라집니다.</h2>
+        <h2 className="section-title">같은 제품이라도,<br />소비자가 받아들이는<br /><em>인식이 달라집니다.</em></h2>
         <div className="perception-grid">
           <article className="perception-card"><header className="perception-card__heading"><p className="perception-card__label">제품 포지션</p><p className="perception-card__subtitle">소비자의 제품 인식</p></header><p className="perception-card__before">“성분을 조합해 만든 일반적인 제품”이 아니라</p><h3>“효능과 작용원리까지 연구해 설계한 <em className="text-blue keep-together">기술제품</em>”</h3><p className="perception-card__note">으로 인식되도록 만듭니다.</p></article>
           <article className="perception-card"><header className="perception-card__heading"><p className="perception-card__label">브랜드 포지션</p><p className="perception-card__subtitle">소비자의 브랜드 인식</p></header><p className="perception-card__before">단순히 제품을 광고/판매하는 브랜드가 아니라</p><h3>“해당 분야의 효능을 집중적으로 연구하는 <em className="text-blue keep-together">전문 브랜드</em>”</h3><p className="perception-card__note">로 인식되도록 만듭니다.</p></article>
         </div>
-        <p className="perception__conclusion"><span className="copy-line">그리고 그 인식의 차이는</span><span className="copy-line perception__keyline"><span className="keep-together"><em>“제품에 대한 호기심”</em>과</span> <span className="keep-together"><em>“효능에 대한 기대감”</em>을 높여,</span></span><span className="copy-line"><span className="keep-together">첫 구매 전환을 만들고</span> <span className="keep-together"><em>기존 타제품 사용자의 전환</em>까지</span> 유도합니다.</span></p>
+        <p className="perception__conclusion"><span className="copy-line">그리고 그 인식의 차이는</span><span className="copy-line perception__keyline"><span className="keep-together"><em>“제품에 대한 호기심”</em>과</span> <span className="keep-together"><em>“효능에 대한 기대감”</em>을 높여,</span></span><span className="copy-line"><span className="keep-together">첫 구매 전환을 만들고</span><br /><span className="keep-together"><em>기존 타제품 사용자의 전환</em>까지</span> 유도합니다.</span></p>
       </Section>
 
       <Section id="consult" theme="dark" className="consult" nodeId="1:64" glow="1-64-imgGlowConsultFocus">
-        <h2 className="section-title"><span className="text-accent text-blue">“우리도 특허 낼 수 있을까요?”</span></h2>
+        <h2 className="section-title"><span className="text-accent text-blue text-shimmer"><span className="keep-together">“우리도 특허</span> <span className="keep-together">낼 수 있을까요?”</span></span></h2>
         <p className="consult__intro"><span className="copy-line">제품명이나 판매 링크만 보내주세요.</span><span className="copy-line">제품을 분석해 <strong className="text-blue">어떤 포인트를 강조할지부터</strong></span><span className="copy-line"><strong className="text-blue">어떤 특허를 출원하면 좋을지</strong>까지 설계해드립니다.</span></p>
-        <ol className="consult-steps">{['제품 분석', '소구점 발굴', '특허명칭·출원방향 제안'].map((text, i) => <li key={text}><span>0{i + 1}</span><strong>{text}</strong></li>)}</ol>
+        <ConsultSteps />
         <p className="consult__no-idea text-blue">직접 특허 아이디어를 준비하실 필요 없습니다.</p>
         <ul className="consult-benefits">{['평균 24시간 이내', '광고 소재 삽입 가능', '상세페이지 삽입 가능', '개인/회사 명의 출원 가능'].map(text => <li key={text}>{text}</li>)}</ul>
         <p className="consult__available">ODM, OEM, 사입, 위탁판매, 병행수입 대표님도<br />제품에서 특허출원할 수 있는 포인트를 발굴해드립니다.</p>
@@ -71,7 +73,7 @@ export default function App() {
       </Section>
 
       <Section id="pricing" theme="dark" className="pricing" nodeId="1:91">
-          <p className="pricing__kicker text-red"><span className="keep-together">지금 바로 광고·상세페이지에</span> <span className="keep-together">활용할 수 있는</span></p>
+          <p className="pricing__kicker text-red text-shimmer"><span className="keep-together">지금 바로 광고·상세페이지에</span> <span className="keep-together">활용할 수 있는</span></p>
           <h2 className="section-title"><em className="text-blue text-shimmer">IP 마케팅 소재</em><br /><span className="text-shimmer text-shimmer--silver">구축 패키지</span></h2>
           <Pricing />
           <p className="pricing__description"><span className="copy-line"><span className="keep-together">제품의 <em className="text-blue">차별화 요소</em>를</span> <span className="keep-together"><em className="text-blue">특허 포인트</em>로 발굴하고,</span></span><span className="copy-line"><span className="keep-together">브랜드에 활용할 수 있는</span> <span className="keep-together"><em className="text-blue">IP 마케팅 소재</em>로 완성합니다.</span></span></p>
@@ -100,7 +102,7 @@ export default function App() {
       <Section id="deliverables" className="deliverables" nodeId="1:132" glow="1-132-imgGlowReferenceBlue">
         <h2 className="section-title">결과물 예시</h2>
         <div className="deliverables-grid">
-          <div className="certificate-frame"><SafeImage src={media.certificate} alt="특허출원증명서 결과물 예시" width={9366} height={6795} loading="lazy" /></div>
+          <BookShowcase />
           <div className="deliverables__copy">
             <h3>다른 경쟁제품과 확실히 차별성을<br />강력하게 어필할 수 있는 것,<br /><em><span className="keep-together">“특허출원 기술”이라는</span> <span className="keep-together">프레임입니다.</span></em></h3>
             <p>특허출원서는 단순한 서류가 아닙니다.<br />광고 영상과 상세페이지에서<br />대표님 상품이 왜 다른지 보여주는<br /><strong><span className="text-red keep-together">강력한 마케팅 무기</span>가 됩니다.</strong></p>

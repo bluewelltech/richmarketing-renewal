@@ -1,0 +1,100 @@
+/* September review: readable mobile copy and restrained, progressive motion. */
+.brand strong { font-size: 24px; font-weight: 800; }
+.consult-link--compact { width: 242px; font-size: 17px; }
+.hero__sub { font-size: 27px; }
+.hero__message { font-size: 25px; line-height: 1.65; }
+.solution__intro { font-size: 30px; line-height: 1.55; }
+.solution__caption { font-size: 28px; line-height: 1.55; }
+.carousel--patent .carousel__viewport { height: 416px; }
+.carousel--patent .carousel__image img { object-fit: contain; }
+.consumer-dots { display: inline-flex; }
+.consumer-dots > span { position: relative; }
+.consumer-dots > span::before { content: ''; position: absolute; width: 0.14em; height: 0.14em; border-radius: 50%; background: currentColor; top: -0.05em; left: 50%; transform: translateX(-50%); animation: emphasis-dot 3.6s both infinite; }
+.consumer-dots > span:nth-child(2)::before { animation-delay: 0.3s; }
+.consumer-dots > span:nth-child(3)::before { animation-delay: 0.6s; }
+@keyframes emphasis-dot { 0%, 8% { opacity: 0; } 20%, 82% { opacity: 1; } 100% { opacity: 0; } }
+.perception .eyebrow { font-size: 46px; line-height: 1.4; letter-spacing: -0.5px; text-shadow: none; }
+.consult .section-title { font-size: 54px; }
+.consult__intro { font-size: 26px; }
+.consult__no-idea { font-size: 25px; line-height: 1.5; }
+.consult-benefits li { font-size: 18px; line-height: 1.45; }
+.consult-steps[data-active] li { animation: consult-illuminate 650ms ease-out both; }
+.consult-steps[data-active] li:nth-child(2) { animation-delay: 750ms; }
+.consult-steps[data-active] li:nth-child(3) { animation-delay: 1500ms; }
+.consult-steps span { color: #0757ff; }
+@keyframes consult-illuminate {
+  from { background: #08172f; color: #fff; border-color: #28549a; box-shadow: none; }
+  to { background: #fff; color: #151b28; border-color: #cbdcff; box-shadow: 0 0 24px rgb(87 148 255 / 24%); }
+}
+.pricing__kicker { font-size: 23px; line-height: 1.5; }
+.process .eyebrow { font-size: 23px; line-height: 1.5; }
+.process .section-title { font-size: 50px; line-height: 1.5; }
+.problem .section-title, .problem__description { letter-spacing: 0; }
+.problem__description { font-size: 23px; line-height: 1.65; font-weight: 700; color: #c3d1e8; }
+.problem__description .copy-line:last-child { color: #fff; font-weight: 800; font-size: 1.08em; }
+.deliverables__uses li { font-size: 19px; line-height: 1.5; padding: 16px; }
+.book-showcase { min-width: 0; width: 100%; }
+.book-showcase__pages { position: relative; width: 100%; aspect-ratio: 4 / 5; perspective: 1400px; }
+.book-showcase__page { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; border: 1px solid #d7e2f3; border-radius: 12px; background: #f4f7fc; padding: 8px; overflow: hidden; box-shadow: 0 12px 30px rgb(30 64 115 / 13%); }
+.book-showcase__page img { width: 100%; height: 100%; object-fit: contain; }
+.book-showcase__current { animation: page-arrive 850ms ease-out both; }
+.book-showcase__turning { transform-origin: left center; backface-visibility: hidden; animation: page-turn 850ms ease-in-out forwards; }
+@keyframes page-turn { 0% { transform: rotateY(0); opacity: 1; } 70% { opacity: 0.9; } 100% { transform: rotateY(-100deg); opacity: 0; } }
+@keyframes page-arrive { from { transform: translateX(5%); } to { transform: translateX(0); } }
+.book-showcase__dots { display: flex; justify-content: center; gap: 8px; padding-top: 18px; }
+.book-showcase__dots span { width: 6px; height: 6px; border-radius: 50%; background: #d1dae9; }
+.book-showcase__dots .is-active { background: var(--blue); }
+.examples-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+.example-card > div { height: auto; aspect-ratio: auto; border-radius: 10px; }
+.example-card img { height: auto; object-fit: contain; }
+.results-chips li { width: 180px; font-size: 18px; }
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .text-shimmer--diagonal { --shine: #a7cdff; background-image: linear-gradient(135deg, currentColor 40%, var(--shine) 49%, var(--shine) 51%, currentColor 60%); background-size: 300% 300%; animation: diagonal-sweep 4.8s ease-in-out infinite; }
+}
+@keyframes diagonal-sweep { 0%, 10% { background-position: 100% 100%; } 65%, 100% { background-position: 0% 0%; } }
+@media (max-width: 1100px) {
+  .perception .eyebrow { font-size: 36px; }
+  .consult .section-title { font-size: 39px; }
+  .process .section-title { font-size: 39px; }
+}
+@media (max-width: 600px) {
+  .brand strong { font-size: clamp(14px, 4.25vw, 18px); line-height: 1.4; }
+  .brand span { font-size: 9px; }
+  .site-header { gap: 10px; }
+  .consult-link--compact { width: auto; padding: 12px 14px; font-size: clamp(11px, 3.2vw, 14px); }
+  .hero__sub { font-size: 20px; line-height: 1.5; }
+  .hero__message { font-size: 19px; line-height: 1.65; }
+  .solution__intro { font-size: 21px; line-height: 1.55; }
+  .solution__intro .copy-line:nth-child(2) { text-wrap: balance; }
+  .solution__caption { font-size: 21px; line-height: 1.55; }
+  .carousel--patent .carousel__viewport { height: 424px; }
+  .perception .eyebrow { font-size: clamp(25px, 7.4vw, 29px); line-height: 1.48; }
+  .consult .section-title { font-size: clamp(27px, 8.25vw, 35px); line-height: 1.5; }
+  .consult__intro { font-size: 20px; line-height: 1.6; }
+  .consult__no-idea { font-size: 21px; line-height: 1.5; }
+  .consult-benefits li { font-size: 15px; padding: 14px 8px; }
+  .pricing__kicker { font-size: 18px; line-height: 1.5; }
+  .process .eyebrow { font-size: 19px; }
+  .process .section-title { font-size: clamp(29px, 8.4vw, 34px); }
+  .problem .section-title { font-size: 28px; letter-spacing: 0; }
+  .problem__description { font-size: 19px; line-height: 1.7; }
+  .deliverables__uses li { font-size: 18px; padding: 15px 14px; }
+  .examples-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .example-card { padding: 5px 5px 12px; gap: 10px; border-radius: 12px; }
+  .example-card > div { aspect-ratio: auto; height: auto; }
+  .example-card figcaption { font-size: 13px; line-height: 1.5; }
+  .results-chips li { font-size: 15px; padding: 11px 5px; }
+}
+@media (max-width: 359px) {
+  .site-header { gap: 6px; }
+  .brand span { max-width: 135px; font-size: 8px; }
+  .consult-link--compact { padding-inline: 10px; }
+  .hero__message { font-size: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .text-shimmer--diagonal { animation: none; background-image: none; -webkit-text-fill-color: currentColor; }
+  .consumer-dots > span::before { animation: none; opacity: 1; }
+  .consult-steps li { animation: none !important; background: #fff; color: #151b28; }
+  .book-showcase__current { animation: none; }
+  .book-showcase__turning { display: none; }
+}
