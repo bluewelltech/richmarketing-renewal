@@ -133,7 +133,7 @@ export default function App() {
       <Section id="eligibility" className="eligibility" nodeId="1:158" glow="1-158-imgGlowReferenceBlue">
         <h2 className="section-title">직접 만든 제품이 아니어도<br /><em>괜찮습니다.</em></h2>
         <ul className="eligibility-types">{['ODM/OEM', '사입', '구매대행', '병행수입'].map((text, i) => <li key={text}><span>0{i + 1}</span><strong>{text}</strong></li>)}</ul>
-        <div className="value-card"><h3><span className="keep-together">저비용으로, 오래 쓰는</span> <span className="keep-together">마케팅 자산을 만듭니다.</span></h3><p><span className="copy-line">단 <em>25~45만원</em>으로 일회성 광고 소재가 아니라,</span><span className="copy-line">대표님의 광고·상세페이지에 <em className="text-red keep-together">반복, 지속적으로 활용</em>할 수 있는</span><span className="copy-line"><em>차별화된 강력한 마케팅 포인트</em>를 만들어보세요.</span></p></div>
+        <div className="value-card"><h3><span className="keep-together">저비용으로, 오래 쓰는</span> <span className="keep-together">마케팅 자산을 만듭니다.</span></h3><p><span className="copy-line">단 <em>25~40만원</em>으로 일회성 광고 소재가 아니라,</span><span className="copy-line">대표님의 광고·상세페이지에 <em className="text-red keep-together">반복, 지속적으로 활용</em>할 수 있는</span><span className="copy-line"><em>차별화된 강력한 마케팅 포인트</em>를 만들어보세요.</span></p></div>
       </Section>
 
       <Section id="apply" theme="dark" className="final-cta" nodeId="21:2" glow="21-2-imgEffectFinalCtaSpotlight">

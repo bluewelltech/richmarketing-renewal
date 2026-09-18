@@ -20,7 +20,7 @@ export const media = {
 export const figmaAsset = (name: string) => `${import.meta.env.BASE_URL}figma/${name}.svg`;
 
 export const packages = [
-  { count: 1, label: '단품', title: '특허 소재 1건', price: 45, total: 45 },
+  { count: 1, label: '단품', title: '특허 소재 1건', price: 40, total: 40 },
   { count: 4, label: '브랜드사 추천', title: 'IP 마케팅 패키지', price: 25, total: 100 },
 ];
 export const patentExamples = [

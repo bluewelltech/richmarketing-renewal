@@ -32,7 +32,7 @@ test('pricing is informational with a permanently highlighted package', async ({
   const group = page.getByRole('group', { name: 'IP 마케팅 패키지 가격' });
   await expect(group.getByRole('button')).toHaveCount(0);
   await expect(group.locator('article')).toHaveCount(2);
-  await expect(group).toContainText('45만원');
+  await expect(group).toContainText('40만원');
   await expect(group).toContainText('25만원');
   await expect(group).toContainText('총 100만원');
   await expect(group.getByText(/선택하기|선택됨/)).toHaveCount(0);
