@@ -520,3 +520,26 @@ button, a { -webkit-tap-highlight-color: transparent; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; transition-delay: 0ms !important; }
   .process-list[data-reveal] .process-step { opacity: 1; transform: none; }
 }
+
+/* Long perception headings fit inside a full-width label. */
+.perception .perception-card__label {
+  display: block;
+  width: 100%;
+  padding: 15px 16px;
+  border-radius: 8px;
+  background: #092363;
+  color: #fff;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.5;
+  font-weight: 800;
+  text-align: center;
+  text-wrap: balance;
+  word-break: keep-all;
+}
+.perception-card__before { font-size: 20px; line-height: 1.65; font-weight: 650; }
+body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+img, a { -webkit-user-drag: none; }
+input, textarea, [contenteditable="true"] { -webkit-user-select: text; user-select: text; }
+@media (max-width: 767px) {
+  .perception-card__before { font-size: 18px; line-height: 1.65; }
+}
