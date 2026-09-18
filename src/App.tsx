@@ -9,10 +9,10 @@ import { Glow, Section } from './components/Section';
 import { figmaAsset, heroImages, media, patentImages } from './data';
 
 const reactions = [
-  { icon: 'Bulb', title: <>“특허출원 기술이라고?”</>, body: <>제품의 차별화 요소를<br />{' '}실제 특허출원 내용으로 구체화했다는 점을<br />{' '}보여줄 수 있습니다.</> },
-  { icon: 'PatentDocument', title: <>“제품 하나에 이런 특허까지<br />{' '}출원했다고?”</>, body: <>제품의 성분, 배합, 작용원리 등을<br />{' '}기술적인 관점에서 보여줄 수 있습니다.</> },
-  { icon: 'Search', title: <>“제품의 특징을”</>, body: <>특허 관점에서 구조화하여<br />{' '}설명할 수 있습니다.</> },
-  { icon: 'Cart', title: <>“단순히 과대광고만 하는<br />{' '}제품은 아닌 것 같은데”</>, body: <>단순한 광고 문구를 넘어,<br />{' '}제품의 구매 이유를 기술적인 관점에서<br />{' '}보여줄 수 있습니다.</> },
+  { icon: 'Bulb', title: <>“<em>특허출원 기술</em>이라고?”</>, body: <>제품의 차별화 요소를<br />{' '}<em>실제 특허출원 내용으로 구체화</em>했다는 점을<br />{' '}보여줄 수 있습니다.</> },
+  { icon: 'PatentDocument', title: <>“제품 하나에 이런 <em>특허까지 출원</em>했다고?”</>, body: <>제품의 <em>성분, 배합, 작용원리</em> 등을<br />{' '}기술적인 관점에서 보여줄 수 있습니다.</> },
+  { icon: 'Search', title: <>“제품의 특징을 <em>특허 관점에서 구조화</em>하여 설명할 수 있습니다.”</>, body: null },
+  { icon: 'Cart', title: <>“단순히 과대광고만 하는<br />{' '}제품은 아닌 것 같은데”</>, body: <>단순한 광고 문구를 넘어,<br />{' '}제품의 구매 이유를 <em>기술적인 관점</em>에서<br />{' '}보여줄 수 있습니다.</> },
 ];
 
 export default function App() {
@@ -29,13 +29,13 @@ export default function App() {
         <p className="hero__sub">이제는 모두 비슷하게 하고 있습니다.</p>
         <Carousel variant="hero" slides={heroImages} label="광고 소재 예시" interval={1600} initial={1} />
         <div className="hero__message">
-          <p>문제는, 소비자 눈에도<br /><strong className="text-blue">모든 제품이 다 비슷해 보인다는 겁니다.</strong></p>
-          <p>비슷한 광고, 비슷한 효능, 비슷한 데이터 속에서<br />소비자가 한 번 더 멈춰보고,<br />제품을 한 번 더 들여다보게 만드는<br /><strong className="text-accent">새로운 차별점이 필요합니다.</strong></p>
+          <p>문제는, 소비자 눈에도<br /><strong className="text-blue text-accent">모든 제품이 다 비슷해 보인다는 겁니다.</strong></p>
+          <p>비슷한 광고, 비슷한 효능, 비슷한 데이터 속에서<br />소비자가 한 번 더 멈춰보고,<br />제품을 한 번 더 들여다보게 만드는<br /><strong className="text-accent hero__difference text-shimmer">새로운 차별점이 필요합니다.</strong></p>
         </div>
       </Section>
 
       <Section id="patent" theme="dark" className="solution" nodeId="1:17" glow="1-17-imgEffectSolutionAura">
-        <p className="solution__intro"><span className="copy-line"><strong className="text-blue">광고 영상과 상세페이지</strong>에서</span><span className="copy-line">“이 제품은 뭔가 다른가?”라는 호기심을 만들고</span><span className="copy-line">제품에 대한 기대감을 주는<br /><strong className="text-blue keep-together">새로운 소구 소재.</strong></span></p>
+        <p className="solution__intro"><span className="copy-line"><strong className="text-blue">광고 영상과 상세페이지</strong>에서</span><span className="copy-line">“이 제품은 뭔가 다른가?”라는</span><span className="copy-line">호기심을 만들고</span><span className="copy-line">제품에 대한 기대감을 주는</span><span className="copy-line"><strong className="text-blue solution__appeal">새로운 소구 소재</strong></span></p>
         <h2 className="solution__title"><strong className="text-blue text-shimmer">브랜드 특허출원 기술</strong><span>이라는 프레임입니다.</span></h2>
         <Carousel variant="patent" slides={patentImages} label="특허 활용 사례" interval={2400} initial={2} />
         <p className="solution__caption">대표님 제품도 위 예시처럼<br /><em className="text-accent text-blue keep-together">“특허출원 기술제품”</em>으로<br /><span className="keep-together">포지셔닝할 수 있습니다.</span></p>
@@ -46,7 +46,7 @@ export default function App() {
         <div className="reaction-grid">{reactions.map((reaction, i) => <article className="reaction-card" key={reaction.icon}>
           <img src={figmaAsset(`1-27-imgHtmlVector${reaction.icon}`)} alt="" className="reaction-card__icon" width="44" height="44" />
           <span className="reaction-card__number">0{i + 1}</span>
-          <h3>{reaction.title}</h3><p>{reaction.body}</p>
+          <h3>{reaction.title}</h3>{reaction.body && <p>{reaction.body}</p>}
         </article>)}</div>
         <p className="legal-note">※ 특허출원은 특허청에 정식으로 진행되는 공식 절차이며, 제품의 기술적 특징과 차별화 요소를 특허문서로 구체화하는 과정입니다.<br />다만, 출원 사실만으로 기술적 우수성이 공식 인정되거나 독점적인 권리가 발생하는 것은 아닙니다.</p>
       </Section>

@@ -1,4 +1,4 @@
-export const CONSULT_URL = 'https://tally.so/r/7Ryg2R';
+export const CONSULT_URL = 'https://tally.so/r/ZjZ98a';
 const imagekit = 'https://ik.imagekit.io/suelle/rich/';
 const cafe24 = 'https://ecimg.cafe24img.com/pg2535b99666738022/bluewelltech/';
 

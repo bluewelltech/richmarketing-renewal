@@ -98,3 +98,21 @@
   .book-showcase__current { animation: none; }
   .book-showcase__turning { display: none; }
 }
+
+/* September 18 review. */
+.hero__difference { display: inline-block; font-size: 1.15em; margin-top: 4px; }
+.solution__intro { display: flex; flex-direction: column; gap: 12px; }
+.solution__appeal { display: block; font-size: 1.35em; font-weight: 800; }
+.reaction-card em { color: #0648c9; font-weight: 800; }
+.perception-card__label { align-self: flex-start; width: fit-content; padding: 7px 13px; background: #062364; color: #fff; border-radius: 4px; }
+.pricing-card--recommended { border-color: var(--gold); }
+.pricing-card:hover { transform: none; }
+.book-showcase__controls { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
+.book-showcase__controls button { border: 1px solid #cbd9ee; background: #0757ff; color: #fff; padding: 12px 16px; border-radius: 8px; font-size: 16px; font-weight: 700; line-height: 1.5; }
+.book-showcase__controls button:first-child:not(:last-child) { background: #fff; color: #0648c9; }
+.book-showcase__controls button:disabled { opacity: 0.45; cursor: default; }
+@media (max-width: 600px) {
+  .solution__intro { gap: 10px; }
+  .hero__difference { font-size: 1.1em; }
+  .book-showcase__controls button { font-size: 14px; padding: 10px 12px; }
+}

@@ -1,5 +1,10 @@
 import { test, expect } from '@playwright/test';
 
+// Verify queued events locally without sending test conversions to Meta.
+test.beforeEach(async ({ page }) => {
+  await page.route('https://connect.facebook.net/**', route => route.abort());
+});
+
 test('complete landing, working local font and consultation destinations', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -14,7 +19,7 @@ test('complete landing, working local font and consultation destinations', async
   const links = page.getByRole('link', { name: '특허 마케팅 신청하기', exact: false });
   await expect(links).toHaveCount(3);
   for (const link of await links.all()) {
-    await expect(link).toHaveAttribute('href', 'https://tally.so/r/7Ryg2R');
+    await expect(link).toHaveAttribute('href', 'https://tally.so/r/ZjZ98a');
     await expect(link).toHaveAttribute('target', '_blank');
     await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   }
@@ -22,18 +27,28 @@ test('complete landing, working local font and consultation destinations', async
   expect(errors).toEqual([]);
 });
 
-test('package selection highlights just the chosen package and supports keyboard', async ({ page }) => {
+test('pricing is informational with a permanently highlighted package', async ({ page }) => {
   await page.goto('/');
-  const group = page.getByRole('group', { name: 'IP 마케팅 패키지 선택' });
-  await expect(group.getByRole('button')).toHaveCount(2);
-  const single = group.getByRole('button', { name: '1건 45만원', exact: true });
-  await single.click();
-  await expect(single).toHaveAttribute('aria-pressed', 'true');
-  const bundle = group.getByRole('button', { name: '4건 25만원씩, 총 100만원' });
-  await bundle.focus(); await page.keyboard.press('Enter');
-  await expect(bundle).toHaveAttribute('aria-pressed', 'true');
-  await expect(single).toHaveAttribute('aria-pressed', 'false');
-  await expect(group.locator('[aria-pressed="true"]')).toHaveCount(1);
+  const group = page.getByRole('group', { name: 'IP 마케팅 패키지 가격' });
+  await expect(group.getByRole('button')).toHaveCount(0);
+  await expect(group.locator('article')).toHaveCount(2);
+  await expect(group).toContainText('45만원');
+  await expect(group).toContainText('25만원');
+  await expect(group).toContainText('총 100만원');
+  await expect(group.getByText(/선택하기|선택됨/)).toHaveCount(0);
+  await expect(group.locator('.pricing-card--recommended')).toHaveCSS('border-top-color', 'rgb(243, 216, 137)');
+});
+
+test('Meta initializes once and every consultation click queues one Lead', async ({ page }) => {
+  await page.goto('/');
+  const queue = () => page.evaluate(() => Array.from((window.fbq as unknown as { queue: IArguments[] }).queue, args => Array.from(args)));
+  expect(await queue()).toEqual([['init', '934398425706152'], ['track', 'PageView']]);
+  await page.evaluate(() => document.addEventListener('click', e => e.preventDefault(), true));
+  const links = page.locator('.consult-link');
+  for (let i = 0; i < await links.count(); i++) {
+    await links.nth(i).click();
+    expect((await queue()).filter(args => args[1] === 'Lead')).toHaveLength(i + 1);
+  }
 });
 
 test('carousels loop across both ends with keyboard navigation', async ({ page }) => {
@@ -187,23 +202,22 @@ test('consultation steps light in sequence and remain lit after scrolling away',
   }
 });
 
-test('book preview advances from certificate to patent examples and respects reduced motion', async ({ page }) => {
+test('book stays on certificate until requested and supports next and back', async ({ page }) => {
   await page.clock.install();
   await page.goto('/');
   const book = page.locator('.book-showcase');
   await book.scrollIntoViewIfNeeded();
+  await page.clock.runFor(15000);
   await expect(book).toHaveAttribute('aria-label', /현재 1\/6/);
-  await page.clock.runFor(4400);
+  await book.getByRole('button', { name: '상세페이지 활용방안 예시보기' }).click();
   await expect(book).toHaveAttribute('aria-label', /현재 2\/6/);
   await expect(book.locator('.book-showcase__turning')).toHaveCount(1);
-  await book.focus();
-  await page.clock.runFor(5000);
+  await page.clock.runFor(15000);
   await expect(book).toHaveAttribute('aria-label', /현재 2\/6/);
-  await page.keyboard.press('ArrowLeft');
+  await book.getByRole('button', { name: '뒤로가기' }).click();
   await expect(book).toHaveAttribute('aria-label', /현재 1\/6/);
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await book.blur();
-  await page.clock.runFor(10000);
-  await expect(book).toHaveAttribute('aria-label', /현재 1\/6/);
+  await book.getByRole('button', { name: '상세페이지 활용방안 예시보기' }).click();
+  await expect(book).toHaveAttribute('aria-label', /현재 2\/6/);
   await expect(book.locator('.book-showcase__turning')).toHaveCount(0);
 });

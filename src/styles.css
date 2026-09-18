@@ -194,9 +194,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .pricing-card--recommended { background: #24272c; border-color: #74613b; }
 .pricing-card--recommended .pricing-card__label { color: var(--gold); border-color: rgb(243 216 137 / 42%); background: rgb(243 216 137 / 10%); }
 .pricing-card--recommended .pricing-card__total { color: #fff; }
-.pricing-card:hover { border-color: #b9a06b; transform: translateY(-4px); }
-.pricing-card.is-selected { z-index: 2; transform: translateY(-6px); border-color: var(--gold); box-shadow: 0 10px 30px rgb(0 0 0 / 24%); }
-.pricing-card.is-selected .pricing-card__select { color: var(--gold); }
 .pricing__description { font-size: 20px; font-weight: 600; line-height: 1.65; }
 .pricing .legal-note { color: #9ba7b9; font-size: 12px; line-height: 1.7; }
 
