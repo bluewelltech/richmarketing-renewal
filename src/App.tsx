@@ -1,3 +1,4 @@
+import { useLayoutEffect } from 'react';
 import { BookShowcase } from './components/BookShowcase';
 import { ConsultSteps } from './components/ConsultSteps';
 import { Carousel } from './components/Carousel';
@@ -16,6 +17,11 @@ const reactions = [
 ];
 
 export default function App() {
+  useLayoutEffect(() => {
+    // Runs before the first paint; the bootstrap ignores StrictMode's second call.
+    window.dispatchEvent(new Event('richmarketing:ready'));
+  }, []);
+
   return <>
     <a className="skip-link" href="#main">본문 바로가기</a>
     <main id="main">
