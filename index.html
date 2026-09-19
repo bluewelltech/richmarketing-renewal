@@ -3,6 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Set the policy before React or the browser can restore an old position.
+      (() => {
+        const navigation = performance.getEntriesByType('navigation')[0];
+        if (!navigation || navigation.type !== 'navigate' || location.hash ||
+            document.visibilityState === 'hidden' || !('scrollRestoration' in history)) return;
+
+        const previous = history.scrollRestoration;
+        history.scrollRestoration = 'manual';
+        let active = true;
+        let ready = false;
+        let frame = 0;
+        const inputs = ['pointerdown', 'touchstart', 'wheel', 'keydown'];
+        const stop = () => {
+          if (!active) return;
+          active = false;
+          cancelAnimationFrame(frame);
+          history.scrollRestoration = previous;
+          inputs.forEach(type => window.removeEventListener(type, stop, true));
+          window.removeEventListener('pagehide', stop);
+          window.removeEventListener('hashchange', stop);
+          window.removeEventListener('load', release);
+          window.removeEventListener('richmarketing:ready', start);
+          document.removeEventListener('visibilitychange', onVisibility);
+        };
+        const onVisibility = () => {
+          if (document.visibilityState === 'hidden') stop();
+        };
+        const release = () => {
+          // Restore normal history behavior after initial load, without scrolling again.
+          if (ready && document.readyState === 'complete') frame = requestAnimationFrame(stop);
+        };
+        const start = () => {
+          if (!active || ready) return;
+          ready = true;
+          if (location.hash) { stop(); return; }
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          release();
+        };
+        inputs.forEach(type => window.addEventListener(type, stop, { capture: true, passive: true }));
+        window.addEventListener('pagehide', stop);
+        window.addEventListener('hashchange', stop);
+        window.addEventListener('load', release);
+        window.addEventListener('richmarketing:ready', start);
+        document.addEventListener('visibilitychange', onVisibility);
+      })();
+    </script>
     <meta name="theme-color" content="#020511" />
     <meta name="description" content="제품의 차별화 요소를 특허 포인트로 발굴합니다. 로문특허법률사무소가 운영하는 리치마케팅의 IP 마케팅 소재 구축 패키지를 만나보세요." />
     <meta property="og:type" content="website" />
